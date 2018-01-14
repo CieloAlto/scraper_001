@@ -62,21 +62,17 @@ def urlExtract():
     browser, showAll = openBrowser()
 
     browser.get(showAll)
-
     link = browser.find_elements_by_xpath("//td[@class='links cell c2 lastcol']/a")
-
     for g in link:
         lst2.append(g.get_attribute('href'))
 
     return lst2
 
 
-def diveIn():
+def diveIn(urllst):
 
     browser, showAll = openBrowser()
-
-    urllst = ["<list of URLs>"]
-
+    #urllst = ["<list of URLs>"] ## You can embed URLs mannually here.
     masterlst = []
 
     for i in range(0,len(urllst)):
@@ -97,8 +93,6 @@ def diveIn():
 
         masterlst.append(temp1+temp2)
 
-    #browser.quit()
-    #print (masterlst)
         df = pd.DataFrame(masterlst)
         df.to_csv('./student.csv', sep=',', header=None, index=None)
 
@@ -115,8 +109,8 @@ def combineCsv():
 
 if __name__ == '__main__':
 
-    #urlExtract()
-    #diveIn()
-    #profileSum()
+    output = urlExtract()
+    diveIn(output)
+    profileSum()
     combineCsv()
 
