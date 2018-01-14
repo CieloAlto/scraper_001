@@ -19,7 +19,6 @@ def openBrowser():
     password.send_keys("<password>")
 
     submitButton = browser.find_element_by_id("loginbtn")
-    #button.click()
     submitButton.click()
     time.sleep(5)
     showAll = "<URL to scrape>"
